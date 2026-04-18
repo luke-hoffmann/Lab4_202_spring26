@@ -11,7 +11,7 @@ def enqueue(q: ArrayQueue, n: int) -> ArrayQueue:
     """
     Returns a new ArrayQueue with n added to the back.
     """
-    pass
+    return ArrayQueue(append(q.queue,n))
 
 
 def dequeue(q: ArrayQueue) -> tuple[int, ArrayQueue]:
@@ -21,8 +21,10 @@ def dequeue(q: ArrayQueue) -> tuple[int, ArrayQueue]:
 
     Raises IndexError if the queue is empty.
     """
-    pass
-
+    if len(q.queue.array) == 0: raise IndexError
+    value = q.queue.array[0]
+    if value == None: raise IndexError
+    return (value, ArrayQueue(delete(q.queue,0)))
 
 def peek(q: ArrayQueue) -> int:
     """
@@ -30,7 +32,9 @@ def peek(q: ArrayQueue) -> int:
 
     Raises IndexError if the queue is empty.
     """
-    pass
+    value = q.queue.array[0]
+    if value == None: raise IndexError
+    return value
 
 
 def is_empty(q: ArrayQueue) -> bool:

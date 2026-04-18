@@ -11,7 +11,7 @@ def push(s: ArrayStack, n: int) -> ArrayStack:
     """
     Returns a new ArrayStack with n pushed onto the top.
     """
-    pass
+    return ArrayStack(append(s.stack,n))
 
 
 def pop(s: ArrayStack) -> tuple[int, ArrayStack]:
@@ -21,7 +21,11 @@ def pop(s: ArrayStack) -> tuple[int, ArrayStack]:
 
     Raises IndexError if the stack is empty.
     """
-    pass
+    if len(s.stack.array) ==0: raise IndexError
+    value = s.stack.array[s.stack.next-1]
+    if (value == None): raise IndexError
+    stack = delete(s.stack,s.stack.next-1)
+    return (value,ArrayStack(stack))
 
 def peek(s: ArrayStack) -> int:
     """
@@ -29,7 +33,10 @@ def peek(s: ArrayStack) -> int:
 
     Raises IndexError if the stack is empty.
     """
-    pass
+    if len(s.stack.array) ==0: raise IndexError
+    value = s.stack.array[s.stack.next-1]
+    if (value == None): raise IndexError
+    return value
 
 
 def is_empty(s: ArrayStack) -> bool:
