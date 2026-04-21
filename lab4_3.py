@@ -18,7 +18,13 @@ def enqueue(s: TwoStackQueue, v: int) -> TwoStackQueue:
     """
     Returns a new TwoStackQueue with v added to the back.
     """
-    pass
+    if (s.write == None): 
+        write = Node(v,None)
+    else:
+        write = new_head(v,s.write)
+    return TwoStackQueue(s.read,write)
+    
+    
 
 
 def dequeue(s: TwoStackQueue) -> tuple[int, TwoStackQueue]:
@@ -28,7 +34,18 @@ def dequeue(s: TwoStackQueue) -> tuple[int, TwoStackQueue]:
 
     Raises IndexError if the queue is empty.
     """
-    pass
+    if is_empty(s): raise IndexError
+    read = s.read
+    write = s.write
+    if s.read == None:
+        write = None
+        read = reverse(s.write)
+    if read == None:
+        raise IndexError
+    value = read.value
+    read = read.next
+        
+    return (value,TwoStackQueue(read,write))
 
 
 def peek(s: TwoStackQueue) -> int:
@@ -37,8 +54,17 @@ def peek(s: TwoStackQueue) -> int:
 
     Raises IndexError if the queue is empty.
     """
-    pass
-
+    if is_empty(s): raise IndexError
+    if is_empty(s): raise IndexError
+    read = s.read
+    write = s.write
+    if s.read == None:
+        write = None
+        read = reverse(s.write)
+    if read == None:
+        raise IndexError
+    value = read.value
+    return value
 
 def is_empty(s: TwoStackQueue) -> bool:
     """
